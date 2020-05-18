@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Router, Link } from '@reach/router';
 import axios from 'axios';
-import logo from './logo.svg';
-import './App.css';
+import Dogs from './views/Dogs';
+import NewDog from './views/NewDog';
 
 function App() {
 
@@ -21,20 +21,12 @@ function App() {
     }, [])
 
 
-  const hoverHandler = (e) => {
-    e.preventDefault();
-
-    axios.get()
-  }
-
-
   return (
     <div className="App">
       <h1>Hello World!</h1>
-      <Link to="/dog/{id}">Go to this dog.</Link>
       <Router>
-        <CreateDog path="dog/new"/>
-        <DogDetails path="dog/:id" />
+        <Dogs path="/" dogs={dogs}></Dogs>
+        <NewDog path="/new"></NewDog>
       </Router>
     </div>
   );
