@@ -1,9 +1,22 @@
-import React from 'react'
+import React from 'react';
 import { Link } from '@reach/router';
+import axios from 'axios';
 
 
-const Dogs = ({dogs}) => {
+const Dogs = ({dogs, removeDogs}) => {
 
+    const deleteHandler = (id) => {
+        axios.delete(`http://localhost:8002/api/dogs/${id}`)
+            .then(res => {
+                console.log(res);
+                removeDogs(id);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+// vue.js, angular
 
     return (
         <div>
@@ -13,9 +26,11 @@ const Dogs = ({dogs}) => {
                 dogs.map((dog, i) => {
                     return (
                         <div key={i}>
+                            <hr />
                             <p>name: {dog.name}</p>
                             <p>color: {dog.color}</p>
                             <p>age: {dog.age}</p>
+                            <p>delete: <button onClick={(e) => {deleteHandler(dog._id)}}>delete {dog.name}</button></p>
                         </div>
                     )
                 })

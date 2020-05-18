@@ -22,5 +22,10 @@ module.exports = {
         Dog.deleteOne({_id: req.params.id})
             .then(dog => res.json(dog))
             .catch(err => res.json(err))
+    },
+    edit: (req, res) => {
+        Dog.updateOne({_id: req.params.id}, req.body, {runValidators: true})
+            .then(dog => res.json(dog))
+            .catch(err => res.json(err))
     }
 }
