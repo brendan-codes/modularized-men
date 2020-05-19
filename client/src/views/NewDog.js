@@ -9,9 +9,23 @@ const NewDog = (props) => {
     const [age, setAge] = useState(0);
     const [color, setColor] = useState("");
 
+    const [errs, setErrs] = useState([]);
+
     const thisSubmit = (event) => {
         event.preventDefault();
+        let valid = true;
 
+        if(name.length < 2){
+            valid = false;
+            setErrs([...errs, "Name must be longer than one character!"])
+        }
+
+        if(valid){
+            axiosCall();
+        }
+    }
+
+    const axiosCall = () => {
         axios.post('http://localhost:8002/api/dogs', {
             name: name,
             age: age,
@@ -19,20 +33,17 @@ const NewDog = (props) => {
         })
         .then(res => {
             console.log(res.data);
-
-            if(res.data.hasOwnProperty('errors')){
-                console.log('errors happened!');
-            }else{
-                console.log('no errors!');
-                setDogs([...dogs, res.data]);
-                navigate('/');
-            }
-
+            setDogs([...dogs, res.data]);
+            navigate('/');
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err.response.data.errors);
+            const errorArray = [];
+            for(const key of Object.keys(err.response.data.errors)){
+                errorArray.push(err.response.data.errors[key].message)
+            }
+            setErrs(errorArray);
         })
-
     }
 
     return (
@@ -40,6 +51,7 @@ const NewDog = (props) => {
             <p>NewDog is working!</p>
             <Link to="/">See all the dogs!</Link>
             <h4>Create a new dog</h4>
+            {errs.map((err, i) => <p key={i}>{err}</p>)}
             <form onSubmit={thisSubmit}>
                 <div>
                     <p>Name:</p>

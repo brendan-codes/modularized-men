@@ -3,6 +3,7 @@ import { Router, Link } from '@reach/router';
 import axios from 'axios';
 import Dogs from './views/Dogs';
 import NewDog from './views/NewDog';
+import ShowDog from './views/ShowDog';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Router>
         <Dogs path="/" dogs={dogs} removeDogs={removeDogs}></Dogs>
         <NewDog path="/new" setDogs={setDogs} dogs={dogs}></NewDog>
+        <ShowDog path="/dog/:id"></ShowDog>
       </Router>
     </div>
   );

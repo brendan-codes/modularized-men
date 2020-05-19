@@ -27,7 +27,8 @@ const Dogs = ({dogs, removeDogs}) => {
                     return (
                         <div key={i}>
                             <hr />
-                            <p>name: {dog.name}</p>
+                            <p>name: <Link to={`/dog/${dog._id}`}>{dog.name}</Link></p>
+
                             <p>color: {dog.color}</p>
                             <p>age: {dog.age}</p>
                             <p>delete: <button onClick={(e) => {deleteHandler(dog._id)}}>delete {dog.name}</button></p>
