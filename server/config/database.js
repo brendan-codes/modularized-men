@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/dog-db', {
+// connect to db and silence deprecation errors
+// mongoose.set("runValidators", true);
+mongoose.connect('mongodb://localhost/dog-db2', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
 });
 
+// require the model here, before routes are called
 require('./../models/Dog');

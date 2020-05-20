@@ -14,6 +14,10 @@ const DogSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 1
+    },
+    isAdopted: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 

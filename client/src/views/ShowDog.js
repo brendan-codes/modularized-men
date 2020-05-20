@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from '@reach/router';
 import axios from 'axios';
 
 const ShowDog = (props) => {
@@ -7,7 +8,8 @@ const ShowDog = (props) => {
     const [thisOneDog, setThisOneDog] = useState({
         color: "",
         age: 0,
-        name: ""
+        name: "",
+        isAdopted: false
     })
 
     useEffect(() => {
@@ -27,6 +29,8 @@ const ShowDog = (props) => {
             <p>name: {thisOneDog.name}</p>
             <p>color: {thisOneDog.color}</p>
             <p>age: {thisOneDog.age}</p>
+            <p>is adopted: {thisOneDog.isAdopted.toString()}</p>
+            <p><Link to={"/dog/edit/"+thisOneDog._id}>Edit</Link></p>
         </div>
     )
 }

@@ -24,8 +24,16 @@ module.exports = {
             .catch(err => res.status(400).json(err))
     },
     edit: (req, res) => {
-        Dog.updateOne({_id: req.params.id}, req.body, {runValidators: true})
-            .then(dog => res.json(dog))
-            .catch(err => res.status(400).json(err))
+        console.log(req.params.id);
+        console.log(req.body);
+        Dog.updateOne({_id: req.params.id}, req.body, {runValidators: true, new: true})
+            .then(dog => {
+                console.log(dog);
+                res.json(dog);
+            })
+            .catch(err =>{
+                console.log(err);
+                res.status(400).json(err)
+            })
     }
 }
