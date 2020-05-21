@@ -30,6 +30,7 @@ const ShowDog = (props) => {
             <p>color: {thisOneDog.color}</p>
             <p>age: {thisOneDog.age}</p>
             <p>is adopted: {thisOneDog.isAdopted.toString()}</p>
+            <p>likes: {thisOneDog.likes}</p>
             <p><Link to={"/dog/edit/"+thisOneDog._id}>Edit</Link></p>
         </div>
     )

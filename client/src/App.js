@@ -41,12 +41,19 @@ function App() {
     setDogs(dogsCopy);
   }
 
+  const likeDog = (idx) => {
+    const dogsCopy = [...dogs];
+    const selectedDog = dogsCopy[idx];
+    selectedDog.likes++;
+    setDogs(dogsCopy);
+  }
+
 
   return (
     <div className="App">
       <h1>Hello World!</h1>
       <Router>
-        <Dogs path="/" dogs={dogs} removeDogs={removeDogs} toggleIsAdopted={toggleIsAdopted}></Dogs>
+        <Dogs path="/" dogs={dogs} removeDogs={removeDogs} toggleIsAdopted={toggleIsAdopted} likeDog={likeDog}></Dogs>
         <NewDog path="/new" setDogs={setDogs} dogs={dogs}></NewDog>
         <ShowDog path="/dog/:id"></ShowDog>
         <EditDog path="/dog/edit/:id" getDogs={getDogs}></EditDog>

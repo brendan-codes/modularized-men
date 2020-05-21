@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // connect to db and silence deprecation errors
 // mongoose.set("runValidators", true);
-mongoose.connect('mongodb://localhost/dog-db2', {
+mongoose.connect('mongodb://localhost/dog-db3', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false

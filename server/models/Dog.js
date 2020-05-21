@@ -15,6 +15,10 @@ const DogSchema = new mongoose.Schema({
         required: true,
         min: 1
     },
+    likes: {
+        type: Number,
+        default: 0
+    },
     isAdopted: {
         type: Boolean,
         default: false
